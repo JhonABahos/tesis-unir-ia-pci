@@ -1,20 +1,29 @@
 # main.py
 
 import os
+
 import torch
 from torch.utils.data import DataLoader
 
 from modules.config import (
-    DATA_DIR, DEDUCT_VALUES_FILE, IMAGE_TRANSFORM, MASK_TRANSFORM, DEVICE, BATCH_SIZE, NUM_CLASSES, NUM_EPOCHS, LEARNING_RATE
+    DATA_DIR, DEDUCT_VALUES_FILE, IMAGE_TRANSFORM, MASK_TRANSFORM, DEVICE, BATCH_SIZE, NUM_CLASSES, NUM_EPOCHS,
+    LEARNING_RATE
 )
-from modules.dataset import PavementDataset
-from modules.models import get_deeplabv3_model
-from modules.utils import classify_damage, calculate_pci
-from modules.deduct_values import load_deduct_values
 from modules.damages import DAMAGES
+from modules.dataset import PavementDataset
+from modules.deduct_values import load_deduct_values
+from modules.models import get_deeplabv3_model, HybridCNNTransformer
 from modules.training import train_one_epoch, evaluate
+from modules.utils import classify_damage, calculate_pci
+
 
 def main():
+
+    # Modelo híbrido CNN + Transformer
+    model = HybridCNNTransformer(num_classes=NUM_CLASSES).to(DEVICE)
+    criterion = torch.nn.CrossEntropyLoss()
+    optimizer = torch.optim.Adam(model.parameters(), lr=LEARNING_RATE)
+
     # Cargar valores deducidos
     deduct_values = load_deduct_values(DEDUCT_VALUES_FILE)
 
@@ -52,7 +61,6 @@ def main():
     for epoch in range(NUM_EPOCHS):
         epoch_loss = train_one_epoch(model, train_loader, criterion, optimizer, DEVICE)
         print(f"Epoch {epoch + 1}/{NUM_EPOCHS}, Loss: {epoch_loss:.4f}")
-
         precision, recall, f1 = evaluate(model, val_loader, DEVICE)
         print(f"Validation Precision: {precision:.4f}, Recall: {recall:.4f}, F1-Score: {f1:.4f}")
 
