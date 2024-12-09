@@ -14,7 +14,7 @@ from modules.dataset import PavementDataset
 from modules.deduct_values import load_deduct_values
 from modules.models import get_deeplabv3_model, HybridCNNTransformer
 from modules.training import train_one_epoch, evaluate
-from modules.utils import classify_damage, calculate_pci
+from modules.pci_calculator import classify_damage, calculate_pci
 
 
 def main():

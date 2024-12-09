@@ -2,7 +2,7 @@
 
 import unittest
 import numpy as np
-from modules.utils import classify_damage, calculate_pci
+from modules.pci_calculator import classify_damage, calculate_pci
 
 class TestUtils(unittest.TestCase):
 

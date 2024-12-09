@@ -1,4 +1,4 @@
-# modules/utils.py
+# modules/pci_calculator.py
 
 import cv2
 import numpy as np
