@@ -116,7 +116,7 @@ def process_images(image_dir, road_output_dir, mask_output_dir):
             segment_road(image_path, segmented_image_path)
 
             # Generar máscaras de daños
-            mask_output_path = os.path.join(mask_output_dir, f"mask_{filename}")
+            mask_output_path = os.path.join(mask_output_dir, f"mask_{os.path.splitext(filename)[0]}.jpg")
             generate_damage_masks(segmented_image_path, mask_output_path)
 
 

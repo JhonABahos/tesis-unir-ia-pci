@@ -3,8 +3,8 @@
 import cv2
 import numpy as np
 import torch
-from modules.deduct_values import load_deduct_values, interpolate_deduct_value
-from modules.damages import get_damage_info
+from modules.utils.deduct_values import interpolate_deduct_value
+from modules.utils.damages import get_damage_info
 
 
 def classify_damage(mask, damages_dict):

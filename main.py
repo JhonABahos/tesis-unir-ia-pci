@@ -1,9 +1,9 @@
 #main.py
 
 from modules.config import DATA_DIR
-from modules.preprocessing import process_all_images
+from modules.data_processing.preprocessing import process_all_images
 from modules.training_pipeline import train_model
-from modules.inference import evaluate_example
+from modules.models.inference import evaluate_example
 
 def main():
     # 1. Procesar imágenes: segmentación y generación de máscaras

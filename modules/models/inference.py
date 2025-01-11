@@ -1,10 +1,11 @@
 #modules/inference.py
+import os
 
 import torch
 from modules.config import DEVICE, DEDUCT_VALUES_FILE
-from modules.damages import DAMAGES
-from modules.deduct_values import load_deduct_values
-from modules.pci_calculator import classify_damage, calculate_pci
+from modules.utils.damages import DAMAGES
+from modules.utils.deduct_values import load_deduct_values
+from modules.utils.pci_calculator import classify_damage, calculate_pci
 
 
 def evaluate_example(model, data_dir):
@@ -13,7 +14,7 @@ def evaluate_example(model, data_dir):
     :param model: Modelo entrenado.
     :param data_dir: Directorio base de datos.
     """
-    from modules.dataset import PavementDataset
+    from modules.data_processing.dataset import PavementDataset
     from modules.config import IMAGE_TRANSFORM, MASK_TRANSFORM
 
     val_dataset = PavementDataset(

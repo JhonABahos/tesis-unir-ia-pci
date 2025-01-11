@@ -1,7 +1,7 @@
 #modules.preprocessing.py
 
 import os
-from modules.mask_generator import process_images
+from modules.data_processing.mask_generator import process_images
 
 def process_all_images(data_dir):
     """

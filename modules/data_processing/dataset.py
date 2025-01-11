@@ -1,4 +1,4 @@
-# modules/dataset.py
+# modules.dataset.py
 
 import os
 from PIL import Image
