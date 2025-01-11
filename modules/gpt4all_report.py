@@ -5,12 +5,14 @@ from datetime import datetime
 from config import MODEL_PATH, TEMPERATURE, MAX_TOKENS
 from gpt4all import GPT4All
 
-def generar_reporte_pavimento(pci, daño):
+def generar_reporte_pavimento(pci, damage):
     """
     Genera un reporte técnico sobre el estado del pavimento usando GPT4All.
     """
     # Inicializa apuntando al directorio y especifica el nombre del modelo con extensión .gguf
-    gpt = GPT4All(model_name="gpt4all-falcon-newbpe-q4_0.gguf", model_path="D:/Proyectos_BC/ia_tesis_pci/models", allow_download=False)
+    #gpt = GPT4All(model_name="gpt4all-falcon-newbpe-q4_0.gguf", model_path="D:/Proyectos_BC/ia_tesis_pci/models",allow_download=False)
+    gpt = GPT4All(model_name="Meta-Llama-3-8B-Instruct.Q4_0.gguf", model_path="D:/Proyectos_BC/ia_tesis_pci/models",
+                  allow_download=False)
 
     # Prompt con los datos del pavimento
     prompt = (

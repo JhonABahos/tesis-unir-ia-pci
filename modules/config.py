@@ -43,7 +43,8 @@ LEARNING_RATE = 1e-4
 
 # Ruta al modelo GPT4All
 BASE_DIR = "D:/Proyectos_BC/ia_tesis_pci"
-MODEL_PATH = os.path.join(BASE_DIR, "models", "gpt4all-falcon-newbpe-q4_0.gguf")
+#MODEL_PATH = os.path.join(BASE_DIR, "models", "gpt4all-falcon-newbpe-q4_0.gguf")
+MODEL_PATH = os.path.join(BASE_DIR, "models", "Meta-Llama-3-8B-Instruct.Q4_0.gguf")
 
 # Parámetros del modelo
 MAX_TOKENS = 500  # Número máximo de tokens por respuesta
