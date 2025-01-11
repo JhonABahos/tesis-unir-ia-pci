@@ -1,4 +1,4 @@
-# modules/models.py
+# modules.models.py
 
 """
 Este módulo define funciones para construir modelos de segmentación.
