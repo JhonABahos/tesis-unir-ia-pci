@@ -1,4 +1,4 @@
-# module.postprocess_masks.py
+#module.data_processing.postprocess_masks.py
 
 import os
 import cv2

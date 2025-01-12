@@ -9,12 +9,12 @@ Este documento proporciona una guía detallada sobre la estructura de los módul
 ### **`data_processing/`**
 Agrupa los módulos encargados de la carga, preprocesamiento y manipulación de datos, generación y verificación de máscaras.
 
-- **`dataset.py`**: Módulo encargado de la carga y manejo de los datos de entrenamiento y validación.
-- **`preprocessing.py`**: Realiza las transformaciones y normalización de los datos de entrada.
 - **`split_dataset.py`**: Divide el dataset en subconjuntos de entrenamiento y validación.
-- **`mask_generator.py`**: Genera las máscaras de segmentación basadas en los datos de entrada.
-- **`postprocess_masks.py`**: Realiza el postprocesamiento de las máscaras segmentadas para optimizar los resultados.
-- **`check_masks_utils.py`**: Proporciona utilidades para verificar la validez y consistencia de las máscaras generadas.
+- **`check_masks_utils.py`**: Verifica si todas las imágenes tienen máscaras correspondientes en los conjuntos de entrenamiento y validación.
+- **`dataset.py`**: Define un dataset personalizado de PyTorch para cargar imágenes y máscaras correspondientes. (No se ejecuta directamente. Se importa en otros scripts, como training_pipeline.py)
+- **`preprocessing.py`**: Ejecuta el flujo completo de procesamiento y generación de máscaras para imágenes sin máscaras existentes.
+- **`mask_generator.py`**: Genera máscaras de segmentación para imágenes específicas utilizando el modelo de segmentación.
+- **`postprocess_masks.py`**: Realiza el postprocesamiento de las máscaras segmentadas, eliminando objetos pequeños, delgados y bordillos.
 
 ---
 
@@ -64,6 +64,3 @@ Este archivo sirve como punto de entrada principal para entrenar y validar el mo
 7. `utils/gpt4all_report.py`: Generación de reportes.
 
 ---
-
-Esta organización te permite mantener un flujo de trabajo claro y modular, facilitando la extensión y mantenimiento del proyecto.
-

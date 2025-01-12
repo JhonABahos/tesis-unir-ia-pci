@@ -1,4 +1,4 @@
-#modules.check_masks_utils.py
+#modules.data_processing.check_masks_utils.py
 
 import os
 

@@ -1,4 +1,4 @@
-#modules.preprocessing.py
+#modules.data_processing.preprocessing.py
 
 import os
 from modules.data_processing.mask_generator import process_images
