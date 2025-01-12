@@ -6,7 +6,7 @@ from torch.utils.data import DataLoader
 from modules.config import (
     DEVICE, BATCH_SIZE, NUM_CLASSES, NUM_EPOCHS, LEARNING_RATE, IMAGE_TRANSFORM, MASK_TRANSFORM
 )
-from modules.data_processing.dataset import PavementDataset
+from modules.data_processing.pavement_dataset import PavementDataset
 from modules.models import HybridCNNTransformer
 from modules.models.training import train_one_epoch, evaluate
 

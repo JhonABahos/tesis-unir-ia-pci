@@ -1,4 +1,4 @@
-# modules.data_processing.segmentation_mask_generator.py
+# modules.data_processing.convert_seg_exit_to_masks.py
 
 import numpy as np
 import cv2
@@ -52,3 +52,15 @@ def generate_masks_from_seg_files(input_dir, output_dir):
             cv2.imwrite(mask_output_path, mask)
 
             print(f"Máscara generada: {mask_output_path}")
+
+
+if __name__ == "__main__":
+    # Directorio de entrada con archivos .seg
+    input_dir = r"C:\Users\nesto\OneDrive\Documents\PycharmProjects\py_tesis_ia_pci\data\all_images\seg"
+
+    # Directorio de salida donde se guardarán las máscaras PNG
+    output_dir = r"C:\Users\nesto\OneDrive\Documents\PycharmProjects\py_tesis_ia_pci\data\all_images\masks"
+
+    print("Generando máscaras a partir de archivos .seg...")
+    generate_masks_from_seg_files(input_dir, output_dir)
+    print("Generación de máscaras completada.")

@@ -1,4 +1,4 @@
-#modules.data_processing.mask_generator.py
+#modules.data_processing.segmentation_and_mask_generator.py
 
 import os
 import torch
@@ -28,6 +28,10 @@ def segment_road(image_path, output_path, min_object_size=5000):
     :param output_path: Ruta para guardar la imagen segmentada.
     :param min_object_size: Tamaño mínimo en píxeles para conservar un objeto.
     """
+    if os.path.exists(output_path):
+        print(f"Imagen segmentada ya existe: {output_path}. Saltando segmentación.")
+        return
+
     # Cargar y preprocesar la imagen
     image = Image.open(image_path).convert('RGB')
     original_size = image.size  # Guardar tamaño original (ancho, alto)
@@ -63,14 +67,16 @@ def segment_road(image_path, output_path, min_object_size=5000):
     segmented_image.save(output_path)
     print(f"Carretera segmentada guardada en: {output_path}")
 
-    return output_path
-
 def generate_damage_masks(segmented_image_path, mask_output_path):
     """
     Genera máscaras de daños en la carretera segmentada.
     :param segmented_image_path: Ruta de la imagen segmentada (solo carretera).
     :param mask_output_path: Ruta para guardar la máscara de daños.
     """
+    if os.path.exists(mask_output_path):
+        print(f"Máscara de daños ya existe: {mask_output_path}. Saltando generación.")
+        return
+
     # Cargar y preprocesar la imagen segmentada
     image = Image.open(segmented_image_path).convert('RGB')
     input_tensor = preprocess(image).unsqueeze(0)
@@ -105,25 +111,38 @@ def process_images(image_dir, road_output_dir, mask_output_dir):
         if filename.endswith(('.jpg', '.png')):
             image_path = os.path.join(image_dir, filename)
             segmented_image_path = os.path.join(road_output_dir, f"segmented_{filename}")
-            segment_road(image_path, segmented_image_path)
-
             mask_output_path = os.path.join(mask_output_dir, f"mask_{os.path.splitext(filename)[0]}.jpg")
+
+            # Procesar solo si no existe la imagen segmentada o la máscara
+            segment_road(image_path, segmented_image_path)
             generate_damage_masks(segmented_image_path, mask_output_path)
 
-import os
-from modules.data_processing.mask_generator import process_images
-
 if __name__ == "__main__":
-    # Directorios de entrada y salida (usando rutas absolutas)
-    image_dir = "C:/Users/nesto/OneDrive/Documents/PycharmProjects/py_tesis_ia_pci/data/train/images"
-    road_output_dir = "C:/Users/nesto/OneDrive/Documents/PycharmProjects/py_tesis_ia_pci/data/train/segmented_images"
-    mask_output_dir = "C:/Users/nesto/OneDrive/Documents/PycharmProjects/py_tesis_ia_pci/data/train/masks"
+    # Directorios de entrada y salida para el conjunto de entrenamiento
+    train_image_dir = "C:/Users/nesto/OneDrive/Documents/PycharmProjects/py_tesis_ia_pci/data/train/images"
+    train_road_output_dir = "C:/Users/nesto/OneDrive/Documents/PycharmProjects/py_tesis_ia_pci/data/train/segmented_images"
+    train_mask_output_dir = "C:/Users/nesto/OneDrive/Documents/PycharmProjects/py_tesis_ia_pci/data/train/masks"
+
+    # Directorios de entrada y salida para el conjunto de validación
+    val_image_dir = "C:/Users/nesto/OneDrive/Documents/PycharmProjects/py_tesis_ia_pci/data/val/images"
+    val_road_output_dir = "C:/Users/nesto/OneDrive/Documents/PycharmProjects/py_tesis_ia_pci/data/val/segmented_images"
+    val_mask_output_dir = "C:/Users/nesto/OneDrive/Documents/PycharmProjects/py_tesis_ia_pci/data/val/masks"
 
     # Crear las carpetas si no existen
-    os.makedirs(image_dir, exist_ok=True)
-    os.makedirs(road_output_dir, exist_ok=True)
-    os.makedirs(mask_output_dir, exist_ok=True)
+    os.makedirs(train_image_dir, exist_ok=True)
+    os.makedirs(train_road_output_dir, exist_ok=True)
+    os.makedirs(train_mask_output_dir, exist_ok=True)
 
-    print("Iniciando la segmentación y generación de máscaras...")
-    process_images(image_dir, road_output_dir, mask_output_dir)
-    print("Segmentación y generación de máscaras completada.")
+    os.makedirs(val_image_dir, exist_ok=True)
+    os.makedirs(val_road_output_dir, exist_ok=True)
+    os.makedirs(val_mask_output_dir, exist_ok=True)
+
+    # Procesar imágenes de entrenamiento
+    print("Iniciando segmentación y generación de máscaras para entrenamiento...")
+    process_images(train_image_dir, train_road_output_dir, train_mask_output_dir)
+    print("Segmentación y generación de máscaras para entrenamiento completada.")
+
+    # Procesar imágenes de validación
+    print("Iniciando segmentación y generación de máscaras para validación...")
+    process_images(val_image_dir, val_road_output_dir, val_mask_output_dir)
+    print("Segmentación y generación de máscaras para validación completada.")

@@ -14,7 +14,7 @@ def evaluate_example(model, data_dir):
     :param model: Modelo entrenado.
     :param data_dir: Directorio base de datos.
     """
-    from modules.data_processing.dataset import PavementDataset
+    from modules.data_processing.pavement_dataset import PavementDataset
     from modules.config import IMAGE_TRANSFORM, MASK_TRANSFORM
 
     val_dataset = PavementDataset(
