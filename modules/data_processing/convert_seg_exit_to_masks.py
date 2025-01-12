@@ -1,4 +1,4 @@
-# modules.data_processing.convert_seg_exit_to_masks.py
+# modules/data_processing/convert_seg_exit_to_masks.py
 
 import numpy as np
 import cv2

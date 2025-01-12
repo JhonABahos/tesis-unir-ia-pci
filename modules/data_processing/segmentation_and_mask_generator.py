@@ -1,4 +1,4 @@
-#modules.data_processing.segmentation_and_mask_generator.py
+#modules/data_processing/segmentation_and_mask_generator.py
 
 import os
 import torch

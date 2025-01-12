@@ -1,4 +1,4 @@
-# modules.data_processing.pavement_dataset.py
+# modules/data_processing/pavement_dataset.py
 
 import os
 from PIL import Image

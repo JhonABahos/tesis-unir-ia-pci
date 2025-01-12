@@ -1,9 +1,9 @@
-#modules.training_pipeline.py
+#training_pipeline.py
 
 import os
 import torch
 from torch.utils.data import DataLoader
-from modules.config import (
+from modules.utils.project_config import (
     DEVICE, BATCH_SIZE, NUM_CLASSES, NUM_EPOCHS, LEARNING_RATE, IMAGE_TRANSFORM, MASK_TRANSFORM
 )
 from modules.data_processing.pavement_dataset import PavementDataset

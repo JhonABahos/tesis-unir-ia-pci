@@ -1,7 +1,8 @@
-#module.file_utils.py
+#module/file_utils.py
 
 import os
 import shutil
+
 
 def move_images_to_root_folder(root_dir, image_extensions=None):
     """

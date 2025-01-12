@@ -1,4 +1,4 @@
-# modules.data_processing.split_dataset.py
+# modules/data_processing/split_dataset.py
 import os
 import random
 import shutil

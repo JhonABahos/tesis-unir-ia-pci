@@ -1,4 +1,4 @@
-#modules.config.py
+#/project_config.py
 
 import os
 import torch

@@ -1,4 +1,4 @@
-# modules/training.py
+# models/training.py
 
 import torch
 from sklearn.metrics import precision_score, recall_score, f1_score

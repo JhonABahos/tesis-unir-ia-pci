@@ -1,7 +1,7 @@
 # modules/gpt4all_report.py
 
 from datetime import datetime
-from config import TEMPERATURE, MAX_TOKENS
+from project_config import TEMPERATURE, MAX_TOKENS
 from gpt4all import GPT4All
 
 # Variable global para definir el modelo que se usará

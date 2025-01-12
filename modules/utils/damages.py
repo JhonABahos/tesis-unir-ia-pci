@@ -1,4 +1,4 @@
-# modules.damages.py
+# modules/damages.py
 
 """
 Este módulo define las clases de daños en pavimentos y sus características asociadas (unidad de medida).

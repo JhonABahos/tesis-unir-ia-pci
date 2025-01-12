@@ -6,21 +6,22 @@ Este documento proporciona una guía detallada sobre la estructura de los módul
 
 ## **Organización de carpetas y módulos**
 
-### **`data_processing/`**
+### **Descripción de los scripts en la carpeta `data_processing/`**
 Agrupa los módulos encargados de la carga, preprocesamiento y manipulación de datos, generación y verificación de máscaras.
 
 - **`split_dataset.py`**: Divide el dataset en subconjuntos de entrenamiento y validación.
-- **`check_masks_utils.py`**: Verifica si todas las imágenes tienen máscaras correspondientes en los conjuntos de entrenamiento y validación.
-- **`dataset.py`**: Define un dataset personalizado de PyTorch para cargar imágenes y máscaras correspondientes. (No se ejecuta directamente. Se importa en otros scripts, como training_pipeline.py)
-- **`preprocessing.py`**: Ejecuta el flujo completo de procesamiento y generación de máscaras para imágenes sin máscaras existentes.
-- **`mask_generator.py`**: Genera máscaras de segmentación para imágenes específicas utilizando el modelo de segmentación.
-- **`postprocess_masks.py`**: Realiza el postprocesamiento de las máscaras segmentadas, eliminando objetos pequeños, delgados y bordillos.
+- **`pavement_dataset.py`**: Define un dataset personalizado de PyTorch para cargar imágenes y máscaras correspondientes. Este archivo no se ejecuta directamente; se utiliza en otros scripts como `training_pipeline.py`.
+- **`check_and_generate_masks.py`**: Ejecuta el flujo completo de procesamiento y generación de máscaras para imágenes que no tienen máscaras generadas previamente.
+- **`segmentation_and_mask_generator.py`**: Genera máscaras de segmentación para imágenes específicas utilizando el modelo de segmentación.
+- **`convert_seg_exit_to_masks.py`**: Convierte archivos de salida de segmentación (`.seg`) en máscaras binarias en formato de imagen. (opcional)
+- **`postprocess_masks.py`**: Realiza el postprocesamiento de las máscaras segmentadas, eliminando objetos pequeños, delgados y bordillos. (opcional)
 
 ---
 
 ### **`utils/`**
 Módulos utilitarios para cálculos de soporte y generación de reportes.
 
+- **`check_masks_utils.py`**: Verifica si todas las imágenes tienen máscaras correspondientes en los conjuntos de entrenamiento y validación.
 - **`damages.py`**: Define los tipos de daños y gestiona su información relevante.
 - **`deduct_values.py`**: Calcula los valores deducidos necesarios para la evaluación del índice de condición del pavimento (PCI).
 - **`file_utils.py`**: Contiene funciones para la manipulación de archivos y rutas del proyecto.

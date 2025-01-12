@@ -1,8 +1,8 @@
 #main.py
 
-from modules.config import DATA_DIR
+from modules.utils.project_config import DATA_DIR
 from modules.data_processing.check_and_generate_masks import process_all_images
-from modules.training_pipeline import train_model
+from modules.models.training_pipeline import train_model
 from modules.models.inference import evaluate_example
 
 def main():
